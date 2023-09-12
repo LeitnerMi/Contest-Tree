@@ -57,7 +57,11 @@ class Node:
 
     def get_depth_stat_of_node(self):
         depth_statistics = self.calc_length_of_leaves()
+        if len(depth_statistics) == 1:
+            return depth_statistics[0], depth_statistics[0]
+
         depth_statistics.pop()
+
         max_depth = max(depth_statistics, key=lambda x: x[0])
         min_depth = min(depth_statistics, key=lambda x: x[0])
         # mean_depth = mean(depth_statistics)
