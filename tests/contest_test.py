@@ -11,7 +11,7 @@ df = pl.read_csv(
 print(df.shape)
 
 root_spans = df.filter(col("childSpanId") == None)
-final_df_list =[]
+final_df_list = []
 
 
 def build_tree(cur_node: Node):
@@ -28,7 +28,9 @@ for cur_root in root_spans.iter_rows():
 
     build_tree(root)
     tree = root.init_tree()
-    # print(tree)
+    tree.settings.print_data_with_accessing_field = True
+    tree.settings.accessing_field = 1
+    print(tree)
 
     # print(tree.all_nodes)
     final_df_list.append(pl.from_dicts(tree.to_polars_readable_format()))

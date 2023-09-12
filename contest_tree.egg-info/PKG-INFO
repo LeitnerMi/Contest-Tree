@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: contest-tree
+Version: 0.1.0
+Summary: General purpose tree parsing but it was specifically designed for ConTest
+Author: Michael Leitner
+License: MIT
