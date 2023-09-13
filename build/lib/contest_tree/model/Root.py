@@ -7,7 +7,7 @@ class Root(Node):
         super().__init__(data)
 
     def init_tree(self):
-        self.calc_length_of_leaves()
+        self.calc_length_of_child_nodes()
         self.set_root_on_children()
 
         return Tree(root_node=self)

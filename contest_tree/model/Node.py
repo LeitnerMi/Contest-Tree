@@ -29,27 +29,38 @@ class Node:
         for child in add_children:
             child.parent = self
 
-    def calc_length_of_leaves(self, result=None, depth=1) -> list[tuple]:
+    def calc_length_of_child_nodes(self, result=None, depth=1) -> list[tuple]:
+        if result is None:
+            result = []
+        for child in self.children:
+            result = child.calc_length_of_child_nodes(result, depth + 1)
+
+        self.depth = depth
+        result.append((self.depth, self.data))
+        return result
+
+    def calc_length_of_leaves(self, result=None,depth=1) -> list[tuple]:
         if result is None:
             result = []
         for child in self.children:
             result = child.calc_length_of_leaves(result, depth + 1)
 
         self.depth = depth
-        result.append((self.depth, self.data))
+        if len(self.children) == 0:
+            result.append((self.depth, self.data))
         return result
 
-    def get_depth_stat_of_node(self):
+    def get_depth_stat_of_node(self) -> tuple[float, float, float]:
         depth_statistics = self.calc_length_of_leaves()
         if len(depth_statistics) == 1:
-            return depth_statistics[0], depth_statistics[0]
+            return 0, 0, 0
 
         depth_statistics.pop()
-
-        max_depth = max(depth_statistics, key=lambda x: x[0])
-        min_depth = min(depth_statistics, key=lambda x: x[0])
-        # mean_depth = mean(depth_statistics)
-        return max_depth, min_depth
+        depth_statistics = list(map(lambda x : x[0], depth_statistics))
+        max_depth = max(depth_statistics) - self.depth
+        min_depth = min(depth_statistics) - self.depth
+        mean_depth = mean(depth_statistics) - self.depth
+        return max_depth, min_depth, mean_depth
 
     def flatten_nodes(self, result=None):
         if result is None:
