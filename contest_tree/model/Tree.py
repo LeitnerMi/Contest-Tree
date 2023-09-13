@@ -9,16 +9,29 @@ class Tree:
         self.settings = TreeSettings()
 
     def __str__(self):
-        return self.root_node.print_children(level=1, children=self.root_node.children, settings=self.settings)
+        return self.root_node.print_children(
+            level=1, children=self.root_node.children, settings=self.settings
+        )
 
     def to_polars_readable_format(self):
-        res_dict = {"spanID": [], "max_depth": [], "min_depth": [], "mean_depth": []}
+        res_dict = {
+            "spanID": [],
+            "max_depth": [],
+            "min_depth": [],
+            "mean_depth": [],
+            "self_depth": [],
+        }
 
         for node in self.all_nodes:
-            max_depth, min_depth, mean_depth = node.get_depth_stat_of_node()
+            max_depth, min_depth, mean_depth, self_depth = node.get_depth_stat_of_node()
             res_dict["max_depth"].append(max_depth)
             res_dict["min_depth"].append(min_depth)
             res_dict["mean_depth"].append(float(mean_depth))
-            res_dict["spanID"].append(node.data[1])
+            res_dict["self_depth"].append(self_depth)
+
+            if self.settings.print_data_with_accessing_field:
+                res_dict["spanID"].append(node.data[self.settings.accessing_field])
+            else:
+                res_dict["spanID"].append(node.data)
 
         return res_dict

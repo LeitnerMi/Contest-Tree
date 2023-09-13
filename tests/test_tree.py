@@ -24,10 +24,12 @@ def test1():
     tree = root.init_tree()
     print(tree)
 
-    print("\nDepth statistics are displayed in: (max, min, mean): ")
+    print("\nDepth statistics are displayed in: (max, min, mean, own_level): ")
+    print(f"    Root node: has following depth statistics: {root.get_depth_stat_of_node()}")
     print(f"    Node 11: has following depth statistics: {node11.get_depth_stat_of_node()}")
     print(f"    Node 12: has following depth statistics: {node12.get_depth_stat_of_node()}")
-    print(f"    Root node: has following depth statistics: {root.get_depth_stat_of_node()}")
+    print(f"    Node 23: has following depth statistics: {node23.get_depth_stat_of_node()}")
+    print(f"    Node 31: has following depth statistics: {node31.get_depth_stat_of_node()}")
 
 
 
@@ -49,5 +51,7 @@ def test2():
     print(tree)
     print(root.get_depth_stat_of_node())
 
+    print(tree.to_polars_readable_format())
 
-test2()
+
+test1()
