@@ -39,12 +39,11 @@ class Node:
         result.append((self.depth, self.data))
         return result
 
-    def calc_length_of_leaves(self, result=None,depth=0) -> list[tuple]:
+    def calc_length_of_leaves(self, result=None, depth=0) -> list[tuple]:
         if result is None:
             result = []
         for child in self.children:
             result = child.calc_length_of_leaves(result, depth + 1)
-
 
         if len(self.children) == 0:
             result.append((depth, self.data))

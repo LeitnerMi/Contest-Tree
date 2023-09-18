@@ -52,7 +52,7 @@ class Node:
 
     def get_depth_stat_of_node(self) -> tuple[int, int, float, int]:
         depth_statistics = self.calc_length_of_leaves()
-        depth_statistics = list(map(lambda x : x[0], depth_statistics))
+        depth_statistics = list(map(lambda x: x[0], depth_statistics))
 
         max_depth = max(depth_statistics)
         min_depth = min(depth_statistics)
