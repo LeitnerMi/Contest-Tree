@@ -5,4 +5,7 @@
     <option name="sdkUUID" value="8b9e87ea-f45c-437f-9aab-7f9a8f2ffb03" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (ConTest-Tree)" project-jdk-type="Python SDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>
